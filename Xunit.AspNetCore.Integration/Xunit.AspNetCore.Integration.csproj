@@ -1,0 +1,37 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <Description>Xunit.AspNetCore.Integration is a d</Description>
+    <PackageIconUrl>https://raw.githubusercontent.com/xunit/media/master/logo-512-transparent.png</PackageIconUrl>
+    <PackageLicenseUrl>https://raw.githubusercontent.com/tulde23/Xunit.AspNetCore.Integration/master/LICENSE</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/tulde23/Xunit.AspNetCore.Integration/</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/tulde23/Xunit.AspNetCore.Integration/</RepositoryUrl>
+    <RepositoryType>GIT</RepositoryType>
+    <PackageTags>.NET Core, Integration Testing, AspNetCore</PackageTags>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>Xunit.AspNetCore.Integration.pfx</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>bin\Debug\netstandard2.0\Xunit.AspNetCore.Integration.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DocumentationFile>bin\Release\netstandard2.0\Xunit.AspNetCore.Integration.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="microsoft.aspnetcore.mvc.abstractions" Version="2.0.1" />
+    <PackageReference Include="microsoft.aspnetcore.mvc.core" Version="2.0.1" />
+    <PackageReference Include="microsoft.aspnetcore.mvc.viewfeatures" Version="2.0.1" />
+    <PackageReference Include="microsoft.aspnetcore.testhost" Version="2.0.1" />
+    <PackageReference Include="xunit" Version="2.3.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Contracts\" />
+  </ItemGroup>
+
+</Project>
