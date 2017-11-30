@@ -95,8 +95,8 @@ Assume we have the following controller defined:
 [Route("api/v1/[controller]")]
 public class WeatherController : Controller{
   
- [HttpGet("{postalCode}"]
- public Task<int> Get([FromRoute] int postalCode){
+ [HttpGet()]
+ public Task<int> Get([FromQuery] int postalCode){
   {
      switch(postalCode){
         case 19106 : return 80;
@@ -108,6 +108,7 @@ public class WeatherController : Controller{
 }
 ```
 
+And now for the test.
 ``` csharp
 public class WeatherControllerTests : AwesomeApiTest{
 	public WeatherControllerTests(AwesomeApiIntegrationTestFixture fixture) 
@@ -132,3 +133,58 @@ public class WeatherControllerTests : AwesomeApiTest{
         }
 }
 ```
+
+Not too bad?
+
+### Customization
+
+For most scenarios, the default model decomposers should be able to map your action parameters back to a URI.  However, in some cases, like custom model binders, you will need to write a bit of code to help out.
+
+First create the decomposer:
+``` csharp
+/// <summary>
+    /// Pulls  an id from an inbound model and sets it on the route
+    /// </summary>
+    /// <seealso cref="AbstractDecomposer" />
+    public class CustomFromModelDecomposer : AbstractDecomposer
+    {
+        /// <summary>
+        /// Determines whether this instance can decompose the specified parameter.
+        /// </summary>
+        /// <param name="parameter">The parameter.</param>
+        /// <returns>
+        /// <c>true</c> if this instance can decompose the specified parameter; otherwise, <c>false</c>.
+        /// </returns>
+        public override bool CanDecompose(IControllerActionParameter parameter)
+        {
+            var model = parameter.ParameterValue as MyModel;
+            return model != null;
+        }
+
+        /// <summary>
+        /// Decomposes the parameter.
+        /// </summary>
+        /// <param name="parameter">The parameter.</param>
+        /// <param name="controllerActionRoute">The controller action route.</param>
+        protected override void DecomposeParameter(IControllerActionParameter parameter, IControllerActionRoute controllerActionRoute)
+        {
+            var model = parameter.ParameterValue as MyModel;
+            controllerActionRoute.SetRouteValue("id", model.PersonId);
+        }
+    } 
+```
+
+Now let's register our decomposer. You do this in our IntegrationTestFixture constructor.
+``` csharp
+public class IntegrationTestStartup : Startup{
+}
+
+public class AwesomeApiIntegrationTestFixture : AbstractIntegrationTestFixture<IntegrationTestStartup>{
+	public AwesomeApiIntegrationTestFixture(){
+        ControllerActionParameterDecomposers.AddBinders(new CustomFromModelDecomposer());
+       
+	}
+}
+```
+
+That's it!  Enjoy.
