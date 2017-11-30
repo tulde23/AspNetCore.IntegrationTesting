@@ -2,16 +2,23 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <Description>Xunit.AspNetCore.Integration is a d</Description>
+    <Description>Xunit.AspNetCore.Integration</Description>
+    <Copyright></Copyright>
+    <PackageLicenseUrl>https://github.com/tulde23/Xunit.AspNetCore.Integration/blob/master/lic.txt</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/tulde23/Xunit.AspNetCore.Integration</PackageProjectUrl>
     <PackageIconUrl>https://raw.githubusercontent.com/xunit/media/master/logo-512-transparent.png</PackageIconUrl>
-    <PackageLicenseUrl>https://raw.githubusercontent.com/tulde23/Xunit.AspNetCore.Integration/master/LICENSE</PackageLicenseUrl>
-    <PackageProjectUrl>https://github.com/tulde23/Xunit.AspNetCore.Integration/</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/tulde23/Xunit.AspNetCore.Integration/</RepositoryUrl>
+    <RepositoryUrl>https://github.com/tulde23/Xunit.AspNetCore.Integration</RepositoryUrl>
     <RepositoryType>GIT</RepositoryType>
-    <PackageTags>.NET Core, Integration Testing, AspNetCore</PackageTags>
-    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
-    <SignAssembly>true</SignAssembly>
-    <AssemblyOriginatorKeyFile>Xunit.AspNetCore.Integration.pfx</AssemblyOriginatorKeyFile>
+    <PackageTags>AspNetCore, Integration, Xunit</PackageTags>
+    <PackageReleaseNotes>Initail Release</PackageReleaseNotes>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <ApplicationIcon />
+    <OutputType>Library</OutputType>
+    <StartupObject />
+    <PackageId>Xunit.AspNetCore.Integration</PackageId>
+    <Authors>Jason Tully</Authors>
+    <Company>Jason Tully</Company>
+    <Product>Xunit.AspNetCore.Integration</Product>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -27,7 +34,6 @@
     <PackageReference Include="microsoft.aspnetcore.mvc.core" Version="2.0.1" />
     <PackageReference Include="microsoft.aspnetcore.mvc.viewfeatures" Version="2.0.1" />
     <PackageReference Include="microsoft.aspnetcore.testhost" Version="2.0.1" />
-    <PackageReference Include="xunit" Version="2.3.1" />
   </ItemGroup>
 
   <ItemGroup>
