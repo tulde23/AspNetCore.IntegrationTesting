@@ -1,0 +1,10 @@
+C:\Development\Xunit.AspNetCore.Integration\tests\AwesomeAPI\bin\Release\netcoreapp2.0\AwesomeAPI.deps.json
+C:\Development\Xunit.AspNetCore.Integration\tests\AwesomeAPI\bin\Release\netcoreapp2.0\AwesomeAPI.runtimeconfig.json
+C:\Development\Xunit.AspNetCore.Integration\tests\AwesomeAPI\bin\Release\netcoreapp2.0\AwesomeAPI.runtimeconfig.dev.json
+C:\Development\Xunit.AspNetCore.Integration\tests\AwesomeAPI\bin\Release\netcoreapp2.0\AwesomeAPI.dll
+C:\Development\Xunit.AspNetCore.Integration\tests\AwesomeAPI\bin\Release\netcoreapp2.0\AwesomeAPI.pdb
+C:\Development\Xunit.AspNetCore.Integration\tests\AwesomeAPI\obj\Release\netcoreapp2.0\AwesomeAPI.csproj.CoreCompileInputs.cache
+C:\Development\Xunit.AspNetCore.Integration\tests\AwesomeAPI\obj\Release\netcoreapp2.0\AwesomeAPI.AssemblyInfoInputs.cache
+C:\Development\Xunit.AspNetCore.Integration\tests\AwesomeAPI\obj\Release\netcoreapp2.0\AwesomeAPI.AssemblyInfo.cs
+C:\Development\Xunit.AspNetCore.Integration\tests\AwesomeAPI\obj\Release\netcoreapp2.0\AwesomeAPI.dll
+C:\Development\Xunit.AspNetCore.Integration\tests\AwesomeAPI\obj\Release\netcoreapp2.0\AwesomeAPI.pdb

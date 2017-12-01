@@ -1,0 +1,695 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Xunit.AspNetCore.Integration</name>
+    </assembly>
+    <members>
+        <member name="T:Xunit.AspNetCore.Integration.AbstractIntegrationTestFixture`1">
+            <summary>
+            Provides a base xunit test fixture for integration tests
+            </summary>
+            <typeparam name="TStartup">The type of the startup.</typeparam>
+        </member>
+        <member name="F:Xunit.AspNetCore.Integration.AbstractIntegrationTestFixture`1._server">
+            <summary>
+            Instance of the TestServer
+            </summary>
+        </member>
+        <member name="M:Xunit.AspNetCore.Integration.AbstractIntegrationTestFixture`1.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Xunit.AspNetCore.Integration.AbstractIntegrationTestFixture`1"/> class.
+            </summary>
+        </member>
+        <member name="M:Xunit.AspNetCore.Integration.AbstractIntegrationTestFixture`1.#ctor(System.Func{System.String},System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Xunit.AspNetCore.Integration.AbstractIntegrationTestFixture`1" /> class.
+            </summary>
+            <param name="baseAddress">Allows you to override the default base address of localhost:5000</param>
+            <param name="relativeRoot">The relative root.</param>
+            <example>
+            public class MyIntegrationTestFixture : IntegrationTestFixture{
+            public MyIntegrationTestFixture() : base( ()=&gt; "http://localhost:8080"){
+            }
+            }
+            </example>
+        </member>
+        <member name="M:Xunit.AspNetCore.Integration.AbstractIntegrationTestFixture`1.#ctor(System.String,System.String)">
+            <summary>
+            Private constructor performing common initialization
+            </summary>
+            <param name="baseAddress">The base address.</param>
+            <param name="relativeRoot">The relative root from which to start looking for the main application under test</param>
+        </member>
+        <member name="P:Xunit.AspNetCore.Integration.AbstractIntegrationTestFixture`1.ActionInvoker">
+            <summary>
+            Get the ActionInvoker instance.  This allows you to make strongly bound http requests to your controllers
+            </summary>
+            <value>
+            The client.
+            </value>
+        </member>
+        <member name="P:Xunit.AspNetCore.Integration.AbstractIntegrationTestFixture`1.Services">
+            <summary>
+            Gets the service provider.
+            </summary>
+            <value>
+            The services.
+            </value>
+        </member>
+        <member name="M:Xunit.AspNetCore.Integration.AbstractIntegrationTestFixture`1.Dispose">
+            <summary>
+            Releases unmanaged and - optionally - managed resources.
+            </summary>
+        </member>
+        <member name="M:Xunit.AspNetCore.Integration.AbstractIntegrationTestFixture`1.ManyAsync``2(System.Linq.Expressions.Expression{System.Func{``0,System.Object}})">
+            <summary>
+            Translates a controller action into an http request using the InProc TestServer.  This method assume the response returns an ApiResponse with a collection
+            </summary>
+            <typeparam name="TController">The type of the controller.</typeparam>
+            <typeparam name="TResponse">The type of the response.</typeparam>
+            <param name="expression">The expression.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Xunit.AspNetCore.Integration.AbstractIntegrationTestFixture`1.SingleAsync``2(System.Linq.Expressions.Expression{System.Func{``0,System.Object}})">
+            <summary>
+            Translates a controller action into an http request using the InProc TestServer.  This method assume the response returns an ApiResponse with a single item
+            of items
+            </summary>
+            <typeparam name="TController">The type of the controller.</typeparam>
+            <typeparam name="TResponse">The type of the response.</typeparam>
+            <param name="expression">The expression.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Xunit.AspNetCore.Integration.AbstractIntegrationTestFixture`1.GetProjectPathFromAncestors(System.String,System.Type)">
+            <summary>
+            Using the supplied Startup class attempts to correctly locate our project root.  We traverse the ancestor tree in case
+            the integration tests derives from the application's startup class
+            </summary>
+            <param name="projectRelativePath">The project relative path.</param>
+            <param name="startupType">Type of the startup.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Xunit.AspNetCore.Integration.AbstractIntegrationTestFixture`1.GetProjectPath(System.String,System.Reflection.Assembly)">
+            <summary>
+            Gets the full path to the target project that we wish to test
+            </summary>
+            <param name="projectRelativePath">The parent directory of the target project.
+            e.g. src, samples, test, or test/Websites</param>
+            <param name="startupAssembly">The target project's assembly.</param>
+            <returns>
+            The full path to the target project.
+            </returns>
+            <exception cref="T:System.Exception"></exception>
+        </member>
+        <member name="T:Xunit.AspNetCore.Integration.AbstractTest`1">
+            <summary>
+            A common base class for all tests that require a fixture
+            </summary>
+            <typeparam name="TFixture">A fixture for this test </typeparam>
+        </member>
+        <member name="M:Xunit.AspNetCore.Integration.AbstractTest`1.#ctor(`0)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Xunit.AspNetCore.Integration.AbstractTest`1"/> class.
+            </summary>
+            <param name="configuration">The configuration.</param>
+        </member>
+        <member name="P:Xunit.AspNetCore.Integration.AbstractTest`1.Fixture">
+            <summary>
+            Gets or sets the common fixture.
+            </summary>
+            <value>
+            The configuration.
+            </value>
+        </member>
+        <member name="T:Xunit.AspNetCore.Integration.Contracts.IControllerAction">
+            <summary>
+            Describers a controller action and parameters
+            </summary>
+        </member>
+        <member name="P:Xunit.AspNetCore.Integration.Contracts.IControllerAction.Controller">
+            <summary>
+            Gets the controller.
+            </summary>
+            <value>
+            The controller.
+            </value>
+        </member>
+        <member name="P:Xunit.AspNetCore.Integration.Contracts.IControllerAction.ActionName">
+            <summary>
+            Gets the name of the action.
+            </summary>
+            <value>
+            The name of the action.
+            </value>
+        </member>
+        <member name="P:Xunit.AspNetCore.Integration.Contracts.IControllerAction.ReturnType">
+            <summary>
+            Gets the type of the return.
+            </summary>
+            <value>
+            The type of the return.
+            </value>
+        </member>
+        <member name="P:Xunit.AspNetCore.Integration.Contracts.IControllerAction.Method">
+            <summary>
+            Gets the method.
+            </summary>
+            <value>
+            The method.
+            </value>
+        </member>
+        <member name="P:Xunit.AspNetCore.Integration.Contracts.IControllerAction.ActionParameters">
+            <summary>
+            Gets the action parameters.
+            </summary>
+            <value>
+            The action parameters.
+            </value>
+        </member>
+        <member name="P:Xunit.AspNetCore.Integration.Contracts.IControllerAction.RouteSegments">
+            <summary>
+            Contains a list of route segment string extracted from both controller route annotations and controller action annotations.
+            </summary>
+            <value>
+            The route segments.
+            </value>
+        </member>
+        <member name="T:Xunit.AspNetCore.Integration.Contracts.IControllerActionInvoker">
+            <summary>
+            Describes an abstraction for invoking an IControllerAction
+            </summary>
+        </member>
+        <member name="M:Xunit.AspNetCore.Integration.Contracts.IControllerActionInvoker.InvokeAsync``1(Xunit.AspNetCore.Integration.Contracts.IControllerAction)">
+            <summary>
+            Invokes the controller action asynchronous.
+            </summary>
+            <typeparam name="TResponse">The type of the response.</typeparam>
+            <param name="controllerAction">The controller action.</param>
+            <returns></returns>
+        </member>
+        <member name="T:Xunit.AspNetCore.Integration.Contracts.IControllerActionParameter">
+            <summary>
+             Describes a controller action parameter and it's actual value
+            </summary>
+        </member>
+        <member name="P:Xunit.AspNetCore.Integration.Contracts.IControllerActionParameter.Action">
+            <summary>
+            Gets the action( method name)
+            </summary>
+            <value>
+            The action.
+            </value>
+        </member>
+        <member name="P:Xunit.AspNetCore.Integration.Contracts.IControllerActionParameter.ParameterName">
+            <summary>
+            Gets the name of the parameter.
+            </summary>
+            <value>
+            The name of the parameter.
+            </value>
+        </member>
+        <member name="P:Xunit.AspNetCore.Integration.Contracts.IControllerActionParameter.ParameterValue">
+            <summary>
+            Gets the parameter value.
+            </summary>
+            <value>
+            The parameter value.
+            </value>
+        </member>
+        <member name="P:Xunit.AspNetCore.Integration.Contracts.IControllerActionParameter.BindingSourceMetadata">
+            <summary>
+            Gets the binding source metadata.
+            </summary>
+            <value>
+            The binding source metadata.
+            </value>
+        </member>
+        <member name="T:Xunit.AspNetCore.Integration.Contracts.IControllerActionParameterDecomposer">
+            <summary>
+            Describes an abstraction to produce the inverse of a model binding operation.  Basically we want the ability to take
+            a controller action and decompose it's input parameters back into a valid URI.
+            </summary>
+        </member>
+        <member name="M:Xunit.AspNetCore.Integration.Contracts.IControllerActionParameterDecomposer.Decompose(Xunit.AspNetCore.Integration.Contracts.IControllerActionParameter,Xunit.AspNetCore.Integration.Contracts.IControllerActionRoute)">
+            <summary>
+            Resolves the specified controller action.
+            </summary>
+            <param name="parameter">The parameter.</param>
+            <param name="controllerActionRoute">The controller action route.</param>
+        </member>
+        <member name="M:Xunit.AspNetCore.Integration.Contracts.IControllerActionParameterDecomposer.CanDecompose(Xunit.AspNetCore.Integration.Contracts.IControllerActionParameter)">
+            <summary>
+            Determines whether this instance can decompose the specified parameter.
+            </summary>
+            <param name="parameter">The parameter.</param>
+            <returns>
+              <c>true</c> if this instance can decompose the specified parameter; otherwise, <c>false</c>.
+            </returns>
+        </member>
+        <member name="T:Xunit.AspNetCore.Integration.Contracts.IControllerActionRoute">
+            <summary>
+            Describes a route 
+            </summary>
+        </member>
+        <member name="M:Xunit.AspNetCore.Integration.Contracts.IControllerActionRoute.AddToRoute(System.String)">
+            <summary>
+            Adds to a new segment to the templated route.
+            </summary>
+            <param name="routeSegment">The route segment.</param>
+        </member>
+        <member name="M:Xunit.AspNetCore.Integration.Contracts.IControllerActionRoute.SetModel(System.Object)">
+            <summary>
+            Sets the model.
+            </summary>
+            <param name="value">The value.</param>
+        </member>
+        <member name="M:Xunit.AspNetCore.Integration.Contracts.IControllerActionRoute.SetQueryStringParameter(System.String,System.String)">
+            <summary>
+            Sets the query string parameter.
+            </summary>
+            <param name="name">The name.</param>
+            <param name="value">The value.</param>
+        </member>
+        <member name="M:Xunit.AspNetCore.Integration.Contracts.IControllerActionRoute.SetRouteValue(System.String,System.Object)">
+            <summary>
+            Sets the route value.
+            </summary>
+            <param name="name">The name.</param>
+            <param name="value">The value.</param>
+        </member>
+        <member name="M:Xunit.AspNetCore.Integration.Contracts.IControllerActionRoute.SetHeaderValue(System.String,System.Object)">
+            <summary>
+            Sets the header value.
+            </summary>
+            <param name="name">The name.</param>
+            <param name="value">The value.</param>
+        </member>
+        <member name="M:Xunit.AspNetCore.Integration.Contracts.IControllerActionRoute.BuildRequestMessage(Xunit.AspNetCore.Integration.Contracts.IControllerAction)">
+            <summary>
+            Builds the request message.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Xunit.AspNetCore.Integration.Contracts.IControllerActionRouteProvider">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Xunit.AspNetCore.Integration.Contracts.IControllerActionRouteProvider.CreateRoute(Xunit.AspNetCore.Integration.Contracts.IControllerAction)">
+            <summary>
+            Creates an IControllerActionRoute from an IControllerAction
+            </summary>
+            <param name="action">The action.</param>
+            <returns></returns>
+        </member>
+        <member name="T:Xunit.AspNetCore.Integration.Decomposing.AbstractDecomposer">
+             <summary>
+            
+             </summary>
+             <seealso cref="T:Xunit.AspNetCore.Integration.Contracts.IControllerActionParameterDecomposer" />
+        </member>
+        <member name="M:Xunit.AspNetCore.Integration.Decomposing.AbstractDecomposer.CanDecompose(Xunit.AspNetCore.Integration.Contracts.IControllerActionParameter)">
+            <summary>
+            Determines whether this instance can decompose the specified parameter.
+            </summary>
+            <param name="parameter">The parameter.</param>
+            <returns>
+            <c>true</c> if this instance can decompose the specified parameter; otherwise, <c>false</c>.
+            </returns>
+        </member>
+        <member name="M:Xunit.AspNetCore.Integration.Decomposing.AbstractDecomposer.Decompose(Xunit.AspNetCore.Integration.Contracts.IControllerActionParameter,Xunit.AspNetCore.Integration.Contracts.IControllerActionRoute)">
+            <summary>
+            Resolves the specified controller action.
+            </summary>
+            <param name="parameter"></param>
+            <param name="controllerActionRoute"></param>
+        </member>
+        <member name="M:Xunit.AspNetCore.Integration.Decomposing.AbstractDecomposer.DecomposeParameter(Xunit.AspNetCore.Integration.Contracts.IControllerActionParameter,Xunit.AspNetCore.Integration.Contracts.IControllerActionRoute)">
+            <summary>
+            Decomposes the parameter.
+            </summary>
+            <param name="parameter">The parameter.</param>
+            <param name="controllerActionRoute">The controller action route.</param>
+        </member>
+        <member name="M:Xunit.AspNetCore.Integration.Decomposing.AbstractDecomposer.IsBindingSourceOfType``1(Xunit.AspNetCore.Integration.Contracts.IControllerActionParameter)">
+            <summary>
+            Determines whether [is binding source of type] [the specified paramter].
+            </summary>
+            <typeparam name="TAttributeType">The type of the attribute type.</typeparam>
+            <param name="paramter">The paramter.</param>
+            <returns>
+              <c>true</c> if [is binding source of type] [the specified paramter]; otherwise, <c>false</c>.
+            </returns>
+        </member>
+        <member name="T:Xunit.AspNetCore.Integration.Decomposing.ControllerActionParameterDecomposers">
+            <summary>
+            A factory class for applying IControllerActionParameterDecompers to a route
+            </summary>
+        </member>
+        <member name="F:Xunit.AspNetCore.Integration.Decomposing.ControllerActionParameterDecomposers._binders">
+            <summary>
+            The binders
+            </summary>
+        </member>
+        <member name="M:Xunit.AspNetCore.Integration.Decomposing.ControllerActionParameterDecomposers.AddBinders(Xunit.AspNetCore.Integration.Contracts.IControllerActionParameterDecomposer[])">
+            <summary>
+            Adds  additional model decomposing binders
+            </summary>
+            <param name="binders">The binders.</param>
+        </member>
+        <member name="M:Xunit.AspNetCore.Integration.Decomposing.ControllerActionParameterDecomposers.Decompose(Xunit.AspNetCore.Integration.Contracts.IControllerActionParameter,Xunit.AspNetCore.Integration.Contracts.IControllerActionRoute)">
+            <summary>
+            Decomposes the specified controller action parameter.
+            </summary>
+            <param name="controllerActionParameter">The controller action parameter.</param>
+            <param name="controllerActionRoute">The controller action route.</param>
+        </member>
+        <member name="T:Xunit.AspNetCore.Integration.Decomposing.ControllerActionRoute">
+             <summary>
+            
+             </summary>
+             <seealso cref="T:Xunit.AspNetCore.Integration.Contracts.IControllerActionRoute" />
+        </member>
+        <member name="F:Xunit.AspNetCore.Integration.Decomposing.ControllerActionRoute.ControllerToken">
+            <summary>
+            The controller token
+            </summary>
+        </member>
+        <member name="F:Xunit.AspNetCore.Integration.Decomposing.ControllerActionRoute.PathSeparator">
+            <summary>
+            The path separator
+            </summary>
+        </member>
+        <member name="F:Xunit.AspNetCore.Integration.Decomposing.ControllerActionRoute.MediaTypeJson">
+            <summary>
+            The media type json
+            </summary>
+        </member>
+        <member name="F:Xunit.AspNetCore.Integration.Decomposing.ControllerActionRoute._parameterMatches">
+            <summary>
+            The a list of RegEx matches for route parameters
+            </summary>
+        </member>
+        <member name="F:Xunit.AspNetCore.Integration.Decomposing.ControllerActionRoute._queryString">
+            <summary>
+            A list of query string parameters
+            </summary>
+        </member>
+        <member name="F:Xunit.AspNetCore.Integration.Decomposing.ControllerActionRoute._headers">
+            <summary>
+            A list of header values
+            </summary>
+        </member>
+        <member name="F:Xunit.AspNetCore.Integration.Decomposing.ControllerActionRoute._routeStringBuilder">
+            <summary>
+            The route string builder
+            </summary>
+        </member>
+        <member name="F:Xunit.AspNetCore.Integration.Decomposing.ControllerActionRoute._model">
+            <summary>
+            The model set by http method that send a body
+            </summary>
+        </member>
+        <member name="M:Xunit.AspNetCore.Integration.Decomposing.ControllerActionRoute.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Xunit.AspNetCore.Integration.Decomposing.ControllerActionRoute"/> class.
+            </summary>
+        </member>
+        <member name="M:Xunit.AspNetCore.Integration.Decomposing.ControllerActionRoute.#ctor(Xunit.AspNetCore.Integration.Contracts.IControllerAction)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Xunit.AspNetCore.Integration.Decomposing.ControllerActionRoute"/> class.
+            </summary>
+            <param name="controllerAction">The controller action.</param>
+        </member>
+        <member name="P:Xunit.AspNetCore.Integration.Decomposing.ControllerActionRoute.ParameterizedTemplate">
+            <summary>
+            Gets the parameterized template.
+            </summary>
+            <value>
+            The parameterized template.
+            </value>
+        </member>
+        <member name="M:Xunit.AspNetCore.Integration.Decomposing.ControllerActionRoute.AddToRoute(System.String)">
+            <summary>
+            Adds a route segment to the templated route.
+            </summary>
+            <param name="routeSegment">The route segment.</param>
+        </member>
+        <member name="M:Xunit.AspNetCore.Integration.Decomposing.ControllerActionRoute.BuildUri">
+            <summary>
+            Builds the URI.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Xunit.AspNetCore.Integration.Decomposing.ControllerActionRoute.BuildRequestMessage(Xunit.AspNetCore.Integration.Contracts.IControllerAction)">
+            <summary>
+            Builds the request message.
+            </summary>
+            <param name="controllerAction"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Xunit.AspNetCore.Integration.Decomposing.ControllerActionRoute.GetModel">
+            <summary>
+            Gets the model.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Xunit.AspNetCore.Integration.Decomposing.ControllerActionRoute.SetHeaderValue(System.String,System.Object)">
+            <summary>
+            Sets the header value.
+            </summary>
+            <param name="name">The name.</param>
+            <param name="value">The value.</param>
+        </member>
+        <member name="M:Xunit.AspNetCore.Integration.Decomposing.ControllerActionRoute.SetModel(System.Object)">
+            <summary>
+            Sets the model.
+            </summary>
+            <param name="value">The value.</param>
+        </member>
+        <member name="M:Xunit.AspNetCore.Integration.Decomposing.ControllerActionRoute.SetQueryStringParameter(System.String,System.String)">
+            <summary>
+            Sets the query string parameter.
+            </summary>
+            <param name="name">The name.</param>
+            <param name="value">The value.</param>
+        </member>
+        <member name="M:Xunit.AspNetCore.Integration.Decomposing.ControllerActionRoute.SetRouteValue(System.String,System.Object)">
+            <summary>
+            Sets the route value.
+            </summary>
+            <param name="name">The name.</param>
+            <param name="value">The value.</param>
+        </member>
+        <member name="M:Xunit.AspNetCore.Integration.Decomposing.ControllerActionRoute.MatchRouteTokens(System.String)">
+            <summary>
+            Matches the route tokens.
+            </summary>
+            <param name="template">The template.</param>
+            <returns></returns>
+        </member>
+        <member name="T:Xunit.AspNetCore.Integration.Decomposing.ControllerActionRouteFactory">
+            <summary>
+             A factory class for creating IControllerActionRoute instances
+            </summary>
+        </member>
+        <member name="F:Xunit.AspNetCore.Integration.Decomposing.ControllerActionRouteFactory._provider">
+            <summary>
+            The provider
+            </summary>
+        </member>
+        <member name="M:Xunit.AspNetCore.Integration.Decomposing.ControllerActionRouteFactory.CreateRoute(Xunit.AspNetCore.Integration.Contracts.IControllerAction)">
+            <summary>
+            Creates a route from a controller action
+            </summary>
+            <param name="controllerAction">The controller action.</param>
+            <returns></returns>
+        </member>
+        <member name="T:Xunit.AspNetCore.Integration.Decomposing.ControllerActionRouteProvider">
+             <summary>
+            
+             </summary>
+             <seealso cref="T:Xunit.AspNetCore.Integration.Contracts.IControllerActionRouteProvider" />
+        </member>
+        <member name="M:Xunit.AspNetCore.Integration.Decomposing.ControllerActionRouteProvider.CreateRoute(Xunit.AspNetCore.Integration.Contracts.IControllerAction)">
+            <summary>
+            Creates an IControllerActionRoute from an IControllerAction
+            </summary>
+            <param name="action">The action.</param>
+            <returns></returns>
+        </member>
+        <member name="T:Xunit.AspNetCore.Integration.Decomposing.DefaultDecomposer">
+            <summary>
+            In the abscense of any model binding attributes, this will kick in by assuming the parameter is in the route
+            </summary>
+            <seealso cref="T:Xunit.AspNetCore.Integration.Contracts.IControllerActionParameterDecomposer" />
+        </member>
+        <member name="T:Xunit.AspNetCore.Integration.Decomposing.FromBodyDecomposer">
+            <summary>
+            Sets the model on the target route
+            </summary>
+            <seealso cref="T:Xunit.AspNetCore.Integration.Decomposing.AbstractDecomposer" />
+        </member>
+        <member name="M:Xunit.AspNetCore.Integration.Decomposing.FromBodyDecomposer.DecomposeParameter(Xunit.AspNetCore.Integration.Contracts.IControllerActionParameter,Xunit.AspNetCore.Integration.Contracts.IControllerActionRoute)">
+            <summary>
+            Decomposes the parameter.
+            </summary>
+            <param name="parameter">The parameter.</param>
+            <param name="controllerActionRoute">The controller action route.</param>
+        </member>
+        <member name="M:Xunit.AspNetCore.Integration.Decomposing.FromBodyDecomposer.CanDecompose(Xunit.AspNetCore.Integration.Contracts.IControllerActionParameter)">
+            <summary>
+            Determines whether this instance can decompose the specified parameter.
+            </summary>
+            <param name="parameter">The parameter.</param>
+            <returns>
+            <c>true</c> if this instance can decompose the specified parameter; otherwise, <c>false</c>.
+            </returns>
+        </member>
+        <member name="T:Xunit.AspNetCore.Integration.Decomposing.FromFormDecomposer">
+            <summary>
+            Sets the model on the target route
+            </summary>
+            <seealso cref="T:Xunit.AspNetCore.Integration.Decomposing.FromBodyDecomposer" />
+        </member>
+        <member name="M:Xunit.AspNetCore.Integration.Decomposing.FromFormDecomposer.CanDecompose(Xunit.AspNetCore.Integration.Contracts.IControllerActionParameter)">
+            <summary>
+            Determines whether this instance can decompose the specified parameter.
+            </summary>
+            <param name="parameter">The parameter.</param>
+            <returns>
+            <c>true</c> if this instance can decompose the specified parameter; otherwise, <c>false</c>.
+            </returns>
+        </member>
+        <member name="T:Xunit.AspNetCore.Integration.Decomposing.FromHeaderDecomposer">
+            <summary>
+            Sets header values on the target route
+            </summary>
+            <seealso cref="T:Xunit.AspNetCore.Integration.Decomposing.AbstractDecomposer" />
+        </member>
+        <member name="M:Xunit.AspNetCore.Integration.Decomposing.FromHeaderDecomposer.DecomposeParameter(Xunit.AspNetCore.Integration.Contracts.IControllerActionParameter,Xunit.AspNetCore.Integration.Contracts.IControllerActionRoute)">
+            <summary>
+            Decomposes the parameter.
+            </summary>
+            <param name="parameter">The parameter.</param>
+            <param name="controllerActionRoute">The controller action route.</param>
+        </member>
+        <member name="M:Xunit.AspNetCore.Integration.Decomposing.FromHeaderDecomposer.CanDecompose(Xunit.AspNetCore.Integration.Contracts.IControllerActionParameter)">
+            <summary>
+            Determines whether this instance can decompose the specified parameter.
+            </summary>
+            <param name="parameter">The parameter.</param>
+            <returns>
+            <c>true</c> if this instance can decompose the specified parameter; otherwise, <c>false</c>.
+            </returns>
+        </member>
+        <member name="T:Xunit.AspNetCore.Integration.Decomposing.FromQueryDecomposer">
+            <summary>
+            Sets query string values on the target route
+            </summary>
+            <seealso cref="T:Xunit.AspNetCore.Integration.Decomposing.AbstractDecomposer" />
+        </member>
+        <member name="M:Xunit.AspNetCore.Integration.Decomposing.FromQueryDecomposer.DecomposeParameter(Xunit.AspNetCore.Integration.Contracts.IControllerActionParameter,Xunit.AspNetCore.Integration.Contracts.IControllerActionRoute)">
+            <summary>
+            Decomposes the parameter.
+            </summary>
+            <param name="parameter">The parameter.</param>
+            <param name="controllerActionRoute">The controller action route.</param>
+        </member>
+        <member name="M:Xunit.AspNetCore.Integration.Decomposing.FromQueryDecomposer.CanDecompose(Xunit.AspNetCore.Integration.Contracts.IControllerActionParameter)">
+            <summary>
+            Determines whether this instance can decompose the specified parameter.
+            </summary>
+            <param name="parameter">The parameter.</param>
+            <returns>
+            <c>true</c> if this instance can decompose the specified parameter; otherwise, <c>false</c>.
+            </returns>
+        </member>
+        <member name="T:Xunit.AspNetCore.Integration.Decomposing.FromRouteDecomposer">
+            <summary>
+            Sets route values on the target route
+            </summary>
+            <seealso cref="T:Xunit.AspNetCore.Integration.Decomposing.AbstractDecomposer" />
+        </member>
+        <member name="M:Xunit.AspNetCore.Integration.Decomposing.FromRouteDecomposer.DecomposeParameter(Xunit.AspNetCore.Integration.Contracts.IControllerActionParameter,Xunit.AspNetCore.Integration.Contracts.IControllerActionRoute)">
+            <summary>
+            Decomposes the parameter.  Basically we want to match parameters passed to the action with tokens in the route string
+            </summary>
+            <param name="parameter">The parameter.</param>
+            <param name="controllerActionRoute">The controller action route.</param>
+        </member>
+        <member name="M:Xunit.AspNetCore.Integration.Decomposing.FromRouteDecomposer.CanDecompose(Xunit.AspNetCore.Integration.Contracts.IControllerActionParameter)">
+            <summary>
+            Determines whether this instance can decompose the specified parameter.
+            </summary>
+            <param name="parameter">The parameter.</param>
+            <returns>
+            <c>true</c> if this instance can decompose the specified parameter; otherwise, <c>false</c>.
+            </returns>
+        </member>
+        <member name="T:Xunit.AspNetCore.Integration.Decomposing.FromServicesDecomposer">
+            <summary>
+            
+            </summary>
+            <seealso cref="T:Xunit.AspNetCore.Integration.Decomposing.AbstractDecomposer" />
+        </member>
+        <member name="T:Xunit.AspNetCore.Integration.ControllerActionFactory">
+            <summary>
+            A factory class for creating instances of IControllerAction
+            </summary>
+        </member>
+        <member name="M:Xunit.AspNetCore.Integration.ControllerActionFactory.GetAction``1(System.Linq.Expressions.Expression{System.Func{``0,System.Object}})">
+            <summary>
+            Converts a controller action expression to an instance of IControllerAction.  This instance will contain
+            all metadata needed to decompose captured parameter values from the caller into an invokable http request.
+            </summary>
+            <typeparam name="TController">The type of the controller.</typeparam>
+            <param name="controllerActionExpression">The controller action expression.</param>
+            <returns></returns>
+            <exception cref="T:System.InvalidOperationException">You must supply an HttpMethod</exception>
+        </member>
+        <member name="M:Xunit.AspNetCore.Integration.ControllerActionFactory.GetBindingSourceAttribute(System.Reflection.ParameterInfo)">
+            <summary>
+            Gets the annotated binding source attribute.
+            FromBody
+            FromQuery
+            FromForm
+            FromHeader
+            FromRoute
+            decorating the action parameter.  Can be null
+            </summary>
+            <param name="parameter">The parameter.</param>
+            <returns></returns>
+        </member>
+        <member name="T:Xunit.AspNetCore.Integration.ControllerActionHttpClientDecorator">
+            <summary>
+            Decorate the HttpClient with additional methods
+            </summary>
+            <seealso cref="T:Xunit.AspNetCore.Integration.Contracts.IControllerActionInvoker" />
+        </member>
+        <member name="F:Xunit.AspNetCore.Integration.ControllerActionHttpClientDecorator._client">
+            <summary>
+            The client
+            </summary>
+        </member>
+        <member name="M:Xunit.AspNetCore.Integration.ControllerActionHttpClientDecorator.#ctor(System.Net.Http.HttpClient)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Xunit.AspNetCore.Integration.ControllerActionHttpClientDecorator"/> class.
+            </summary>
+            <param name="client">The client.</param>
+        </member>
+        <member name="M:Xunit.AspNetCore.Integration.ControllerActionHttpClientDecorator.Dispose">
+            <summary>
+            Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+            </summary>
+        </member>
+        <member name="M:Xunit.AspNetCore.Integration.ControllerActionHttpClientDecorator.InvokeAsync``1(Xunit.AspNetCore.Integration.Contracts.IControllerAction)">
+            <summary>
+            Invokes an IControllerAction using an HttpClient
+            </summary>
+            <typeparam name="TResponse">The type of the response.</typeparam>
+            <param name="controllerAction">The controller action.</param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>
