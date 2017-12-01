@@ -19,6 +19,7 @@
     <Authors>Jason Tully</Authors>
     <Company>Jason Tully</Company>
     <Product>Xunit.AspNetCore.Integration</Product>
+    <Version>1.0.1</Version>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">

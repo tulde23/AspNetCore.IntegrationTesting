@@ -13,8 +13,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\src\Xunit.AspNetCore.Integration\Xunit.AspNetCore.Integration.csproj" />
     <ProjectReference Include="..\AwesomeAPI\AwesomeAPI.csproj" />
-    <ProjectReference Include="..\Xunit.AspNetCore.Integration\Xunit.AspNetCore.Integration.csproj" />
   </ItemGroup>
 
 </Project>

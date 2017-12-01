@@ -22,10 +22,13 @@ namespace IntegrationTestAwesomeApi
     /// <summary>
     /// Defines our Integration Test Fixture
     /// </summary>
-    /// <seealso cref="Xunit.AspNetCore.Integration.IntegrationTestFixture{IntegrationTestStartup}" />
-    public class AwesomeApiIntegrationTestFixture : IntegrationTestFixture<Startup>
+    /// <seealso cref="Xunit.AspNetCore.Integration.AbstractIntegrationTestFixture{IntegrationTestStartup}" />
+    public class AwesomeApiIntegrationTestFixture : AbstractIntegrationTestFixture<Startup>
     {
-        public AwesomeApiIntegrationTestFixture() : base()
+        /// <summary>
+        /// if you application under test does not reside in /src of the solution root, pass a different root
+        /// </summary>
+        public AwesomeApiIntegrationTestFixture() : base(null,"tests")
         {
             //this is how we add custom controller action parameter decomposers
             //ControllerActionParameterDecomposers.AddBinders(new MyCustomDecomposer());
