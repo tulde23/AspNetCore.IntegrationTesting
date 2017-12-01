@@ -15,7 +15,7 @@ namespace Xunit.AspNetCore.Integration
     /// Provides a base xunit test fixture for integration tests
     /// </summary>
     /// <typeparam name="TStartup">The type of the startup.</typeparam>
-    public abstract class IntegrationTestFixture<TStartup> where TStartup : class
+    public abstract class AbstractIntegrationTestFixture<TStartup> where TStartup : class
     {
         /// <summary>
         /// Instance of the TestServer
@@ -23,23 +23,24 @@ namespace Xunit.AspNetCore.Integration
         private readonly TestServer _server;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="IntegrationTestFixture{TStartup}"/> class.
+        /// Initializes a new instance of the <see cref="AbstractIntegrationTestFixture{TStartup}"/> class.
         /// </summary>
-        public IntegrationTestFixture() : this("http://localhost:5000")
+        public AbstractIntegrationTestFixture() : this("http://localhost:5000")
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="IntegrationTestFixture{TStartup}" /> class.
+        /// Initializes a new instance of the <see cref="AbstractIntegrationTestFixture{TStartup}" /> class.
         /// </summary>
-        /// <example>
-        ///  public class MyIntegrationTestFixture : IntegrationTestFixture{
-        ///     public MyIntegrationTestFixture() : base( ()=> "http://localhost:8080"){
-        ///     }
-        ///  }
-        /// </example>
         /// <param name="baseAddress">Allows you to override the default base address of localhost:5000</param>
-        protected IntegrationTestFixture(Func<string> baseAddress) : this(baseAddress())
+        /// <param name="relativeRoot">The relative root.</param>
+        /// <example>
+        /// public class MyIntegrationTestFixture : IntegrationTestFixture{
+        /// public MyIntegrationTestFixture() : base( ()=&gt; "http://localhost:8080"){
+        /// }
+        /// }
+        /// </example>
+        protected AbstractIntegrationTestFixture(Func<string> baseAddress, string relativeRoot  = "src") : this(baseAddress?.Invoke() ?? "http://localhost:5000", relativeRoot)
         {
         }
 
@@ -47,9 +48,10 @@ namespace Xunit.AspNetCore.Integration
         /// Private constructor performing common initialization
         /// </summary>
         /// <param name="baseAddress">The base address.</param>
-        private IntegrationTestFixture(string baseAddress)
+        /// <param name="relativeRoot">The relative root from which to start looking for the main application under test</param>
+        private AbstractIntegrationTestFixture(string baseAddress, string relativeRoot = "src")
         {
-            var relativeTargetProjectParentDir = Path.Combine("src");
+            var relativeTargetProjectParentDir = Path.Combine(relativeRoot);
             var contentRoot = GetProjectPathFromAncestors(relativeTargetProjectParentDir, typeof(TStartup));
             var builder = new WebHostBuilder()
                 .CaptureStartupErrors(true)

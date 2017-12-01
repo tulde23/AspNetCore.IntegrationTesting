@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <Description>Xunit.AspNetCore.Integration</Description>
+    <Description>Xunit.AspNetCore.Integration is a simple library allowing you to run integration tests against your controllers in a strongly typed manner.  No more magic route strings and determining what HttpMethod to invoke. You can invoke your controller with one line of code!</Description>
     <Copyright></Copyright>
     <PackageLicenseUrl>https://github.com/tulde23/Xunit.AspNetCore.Integration/blob/master/lic.txt</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/tulde23/Xunit.AspNetCore.Integration</PackageProjectUrl>
@@ -10,7 +10,7 @@
     <RepositoryUrl>https://github.com/tulde23/Xunit.AspNetCore.Integration</RepositoryUrl>
     <RepositoryType>GIT</RepositoryType>
     <PackageTags>AspNetCore, Integration, Xunit</PackageTags>
-    <PackageReleaseNotes>Initail Release</PackageReleaseNotes>
+    <PackageReleaseNotes>Initial Release</PackageReleaseNotes>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <ApplicationIcon />
     <OutputType>Library</OutputType>
@@ -19,6 +19,7 @@
     <Authors>Jason Tully</Authors>
     <Company>Jason Tully</Company>
     <Product>Xunit.AspNetCore.Integration</Product>
+    <Version>1.0.1</Version>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -30,6 +31,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="FluentAssertions" Version="4.19.4" />
     <PackageReference Include="microsoft.aspnetcore.mvc.abstractions" Version="2.0.1" />
     <PackageReference Include="microsoft.aspnetcore.mvc.core" Version="2.0.1" />
     <PackageReference Include="microsoft.aspnetcore.mvc.viewfeatures" Version="2.0.1" />

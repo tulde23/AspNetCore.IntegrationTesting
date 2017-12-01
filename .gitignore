@@ -1,4 +1,8 @@
 
 \.vs/Xunit\.AspNetCore\.Integration/v15/Server/sqlite3/
-/Xunit\.AspNetCore\.Integration/bin
-/Xunit\.AspNetCore\.Integration/obj
+src/Xunit\.AspNetCore\.Integration/bin
+src/Xunit\.AspNetCore\.Integration/obj
+tests/AwesomeAPI/bin
+tests/AwesomeAPI/obj
+tests/IntegrationTestExample/bin
+tests/IntegrationTestExample/obj

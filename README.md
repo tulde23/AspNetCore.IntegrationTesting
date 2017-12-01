@@ -99,11 +99,11 @@ public class WeatherController : Controller{
  public Task<int> Get([FromQuery] int postalCode){
   {
      switch(postalCode){
-        case 19106 : return 80;
-        case 30317 : fdgufn 70;
-        default : return 1;
+        case 19106 : return Task.FromResult(80);
+        case 30317 : return Task.FromResult(70);
+        default : return Task.FromResult(1);
      }
-    return Task.FromResult(80);
+
    }
 }
 ```
