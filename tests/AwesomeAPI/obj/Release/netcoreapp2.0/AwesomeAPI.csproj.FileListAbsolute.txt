@@ -8,4 +8,3 @@ C:\Development\Xunit.AspNetCore.Integration\tests\AwesomeAPI\obj\Release\netcore
 C:\Development\Xunit.AspNetCore.Integration\tests\AwesomeAPI\obj\Release\netcoreapp2.0\AwesomeAPI.AssemblyInfo.cs
 C:\Development\Xunit.AspNetCore.Integration\tests\AwesomeAPI\obj\Release\netcoreapp2.0\AwesomeAPI.dll
 C:\Development\Xunit.AspNetCore.Integration\tests\AwesomeAPI\obj\Release\netcoreapp2.0\AwesomeAPI.pdb
-C:\Development\Xunit.AspNetCore.Integration\tests\AwesomeAPI\obj\Release\netcoreapp2.0\AwesomeAPI.csprojResolveAssemblyReference.cache

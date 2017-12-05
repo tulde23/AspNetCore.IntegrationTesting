@@ -6,7 +6,7 @@
     <Copyright></Copyright>
     <PackageLicenseUrl>https://raw.githubusercontent.com/tulde23/AspNetCore.IntegrationTesting/master/lic.txt</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/tulde23/AspNetCore.IntegrationTesting</PackageProjectUrl>
-    <PackageIconUrl>https://raw.githubusercontent.com/xunit/media/master/logo-512-transparent.png</PackageIconUrl>
+    <PackageIconUrl>https://raw.githubusercontent.com/tulde23/AspNetCore.IntegrationTesting/master/src/net-core-logo-proposal.jpg</PackageIconUrl>
     <RepositoryUrl>https://github.com/tulde23/AspNetCore.IntegrationTesting</RepositoryUrl>
     <RepositoryType>GIT</RepositoryType>
     <PackageTags>AspNetCore, Integration, Controllers, Testing</PackageTags>

@@ -1,5 +1,5 @@
-# Xunit.AspNetCore.Integration
-Xunit.AspNetCore.Integration is a simple library allowing you to run integration tests against your controllers in a strongly typed manner.  No more magic route strings and determining what HttpMethod to invoke. You can invoke your controller with one line of code!
+# AspNetCore.IntegrationTesting
+AspNetCore.IntegrationTesting is a simple library allowing you to run integration tests against your controllers in a strongly typed manner.  No more magic route strings and determining what HttpMethod to invoke. You can invoke your controller with one line of code!
 
 Our goal is to refactor this:
 ```csharp
@@ -26,7 +26,8 @@ Into this:
 
 ```
 
-Let's get started!
+Let's get started by installing Xunit.AspNetCore.Integration.  This package provides a few abstractions that should make
+authoring Xunit integration tests easier.
 
 ## XUnit Fixtures
 Xunit provides two mechanisms for shared state, the class fixture and the collection fixture.  Read more [here](https://xunit.github.io/docs/shared-context.html) about both.  If we need to share context across tests (classes) we must use a collection fixture.  Collection fixtures are particulary important when running integration tests across multiple classes.  You don't want the overhead of constructing and destroying a TestServer for every class in your test project.
@@ -138,35 +139,35 @@ Not too bad?
 
 ### Customization
 
-For most scenarios, the default model decomposers should be able to map your action parameters back to a URI.  However, in some cases, like custom model binders, you will need to write a bit of code to help out.
+For most scenarios, the default model binders should be able to map your action parameters back to a URI.  However, in some cases, like custom model binders, you will need to write a bit of code to help out.
 
-First create the decomposer:
+First create the route binder:
 ``` csharp
 /// <summary>
     /// Pulls  an id from an inbound model and sets it on the route
     /// </summary>
-    /// <seealso cref="AbstractDecomposer" />
-    public class CustomFromModelDecomposer : AbstractDecomposer
+    /// <seealso cref="AbstractRouteBinder" />
+    public class CustomFromModelRouteBinder : AbstractRouteBinder
     {
         /// <summary>
-        /// Determines whether this instance can decompose the specified parameter.
+        /// Determines whether this instance can bind the specified parameter.
         /// </summary>
         /// <param name="parameter">The parameter.</param>
         /// <returns>
         /// <c>true</c> if this instance can decompose the specified parameter; otherwise, <c>false</c>.
         /// </returns>
-        public override bool CanDecompose(IControllerActionParameter parameter)
+        public override bool CanBind(IControllerActionParameter parameter)
         {
             var model = parameter.ParameterValue as MyModel;
             return model != null;
         }
 
         /// <summary>
-        /// Decomposes the parameter.
+        /// Binds the parameter to the route.
         /// </summary>
         /// <param name="parameter">The parameter.</param>
         /// <param name="controllerActionRoute">The controller action route.</param>
-        protected override void DecomposeParameter(IControllerActionParameter parameter, IControllerActionRoute controllerActionRoute)
+        protected override void BindParameter(IControllerActionParameter parameter, IControllerActionRoute controllerActionRoute)
         {
             var model = parameter.ParameterValue as MyModel;
             controllerActionRoute.SetRouteValue("id", model.PersonId);
@@ -174,14 +175,14 @@ First create the decomposer:
     } 
 ```
 
-Now let's register our decomposer. You do this in our IntegrationTestFixture constructor.
+Now let's register our binder. You do this in our IntegrationTestFixture constructor.
 ``` csharp
 public class IntegrationTestStartup : Startup{
 }
 
 public class AwesomeApiIntegrationTestFixture : AbstractIntegrationTestFixture<IntegrationTestStartup>{
 	public AwesomeApiIntegrationTestFixture(){
-        ControllerActionParameterDecomposers.AddBinders(new CustomFromModelDecomposer());
+        ControllerActionParameterBinders.AddBinders(new CustomFromModelBinder());
        
 	}
 }
