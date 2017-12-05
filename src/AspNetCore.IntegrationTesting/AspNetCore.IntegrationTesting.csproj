@@ -1,0 +1,31 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <Description>AspNetCore.IntegrationTesting is a simple library allowing you to run integration tests against your controllers in a strongly typed manner.  No more magic route strings and determining what HttpMethod to invoke. You can invoke your controller with one line of code!</Description>
+    <Copyright></Copyright>
+    <PackageLicenseUrl>https://github.com/tulde23/Xunit.AspNetCore.Integration/blob/master/lic.txt</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/tulde23/Xunit.AspNetCore.Integration</PackageProjectUrl>
+    <PackageIconUrl>https://raw.githubusercontent.com/xunit/media/master/logo-512-transparent.png</PackageIconUrl>
+    <RepositoryUrl>https://github.com/tulde23/Xunit.AspNetCore.Integration</RepositoryUrl>
+    <RepositoryType>GIT</RepositoryType>
+    <PackageTags>AspNetCore, Integration, Controllers, Testing</PackageTags>
+    <PackageReleaseNotes>Initial Release</PackageReleaseNotes>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <ApplicationIcon />
+    <OutputType>Library</OutputType>
+    <StartupObject />
+    <PackageId>AspNetCore.IntegrationTesting</PackageId>
+    <Authors>Jason Tully</Authors>
+    <Company>Jason Tully</Company>
+    <Product>AspNetCore.IntegrationTesting</Product>
+    <Version>1.0.0</Version>
+  </PropertyGroup>
+  <ItemGroup>
+
+    <PackageReference Include="microsoft.aspnetcore.mvc.abstractions" Version="2.0.1" />
+    <PackageReference Include="microsoft.aspnetcore.mvc.core" Version="2.0.1" />
+    <PackageReference Include="microsoft.aspnetcore.mvc.viewfeatures" Version="2.0.1" />
+    <PackageReference Include="microsoft.aspnetcore.testhost" Version="2.0.1" />
+  </ItemGroup>
+</Project>
