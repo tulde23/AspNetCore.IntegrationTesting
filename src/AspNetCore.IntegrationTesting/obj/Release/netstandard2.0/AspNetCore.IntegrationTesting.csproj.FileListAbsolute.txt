@@ -1,9 +1,0 @@
-C:\Development\Xunit.AspNetCore.Integration\src\AspNetCore.IntegrationTesting\obj\Release\netstandard2.0\AspNetCore.IntegrationTesting.csprojResolveAssemblyReference.cache
-C:\Development\Xunit.AspNetCore.Integration\src\AspNetCore.IntegrationTesting\obj\Release\netstandard2.0\AspNetCore.IntegrationTesting.csproj.CoreCompileInputs.cache
-C:\Development\Xunit.AspNetCore.Integration\src\AspNetCore.IntegrationTesting\obj\Release\netstandard2.0\AspNetCore.IntegrationTesting.AssemblyInfoInputs.cache
-C:\Development\Xunit.AspNetCore.Integration\src\AspNetCore.IntegrationTesting\obj\Release\netstandard2.0\AspNetCore.IntegrationTesting.AssemblyInfo.cs
-C:\Development\Xunit.AspNetCore.Integration\src\AspNetCore.IntegrationTesting\bin\Release\netstandard2.0\AspNetCore.IntegrationTesting.deps.json
-C:\Development\Xunit.AspNetCore.Integration\src\AspNetCore.IntegrationTesting\bin\Release\netstandard2.0\AspNetCore.IntegrationTesting.dll
-C:\Development\Xunit.AspNetCore.Integration\src\AspNetCore.IntegrationTesting\bin\Release\netstandard2.0\AspNetCore.IntegrationTesting.pdb
-C:\Development\Xunit.AspNetCore.Integration\src\AspNetCore.IntegrationTesting\obj\Release\netstandard2.0\AspNetCore.IntegrationTesting.dll
-C:\Development\Xunit.AspNetCore.Integration\src\AspNetCore.IntegrationTesting\obj\Release\netstandard2.0\AspNetCore.IntegrationTesting.pdb
