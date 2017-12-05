@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using AspNetCore.IntegrationTesting.Decomposing;
 using AwesomeAPI;
 using Xunit;
 using Xunit.AspNetCore.Integration;
-using Xunit.AspNetCore.Integration.Decomposing;
 
 namespace IntegrationTestAwesomeApi
 {
@@ -28,10 +25,11 @@ namespace IntegrationTestAwesomeApi
         /// <summary>
         /// if you application under test does not reside in /src of the solution root, pass a different root
         /// </summary>
-        public AwesomeApiIntegrationTestFixture() : base(null,"tests")
+        public AwesomeApiIntegrationTestFixture() : base(null, "tests")
         {
             //this is how we add custom controller action parameter decomposers
-            //ControllerActionParameterDecomposers.AddBinders(new MyCustomDecomposer());
+            //ControllerActionParameterBinders.AddBinders(new MyCustomBinder());
+
         }
     }
 

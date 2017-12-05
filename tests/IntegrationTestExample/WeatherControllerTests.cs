@@ -6,7 +6,7 @@ using Xunit;
 
 namespace IntegrationTestExample
 {
-    public class WeatherControllerTests : IntegrationTestAwesomeApi.AwesomeApiIntegrationTest
+    public class WeatherControllerTests : AwesomeApiIntegrationTest
     {
         public WeatherControllerTests(AwesomeApiIntegrationTestFixture fixture) : base(fixture)
         {

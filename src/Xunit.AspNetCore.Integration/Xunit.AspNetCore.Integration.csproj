@@ -2,14 +2,14 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <Description>Xunit.AspNetCore.Integration is a simple library allowing you to run integration tests against your controllers in a strongly typed manner.  No more magic route strings and determining what HttpMethod to invoke. You can invoke your controller with one line of code!</Description>
+    <Description>Xunit.AspNetCore.Integration builds upon AspNetCore.IntegrationTesting by providing a few abstractions to help write integration tests with XUnit.</Description>
     <Copyright></Copyright>
-    <PackageLicenseUrl>https://github.com/tulde23/Xunit.AspNetCore.Integration/blob/master/lic.txt</PackageLicenseUrl>
-    <PackageProjectUrl>https://github.com/tulde23/Xunit.AspNetCore.Integration</PackageProjectUrl>
+    <PackageLicenseUrl>https://raw.githubusercontent.com/tulde23/AspNetCore.IntegrationTesting/master/lic.txt</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/tulde23/AspNetCore.IntegrationTesting</PackageProjectUrl>
     <PackageIconUrl>https://raw.githubusercontent.com/xunit/media/master/logo-512-transparent.png</PackageIconUrl>
-    <RepositoryUrl>https://github.com/tulde23/Xunit.AspNetCore.Integration</RepositoryUrl>
+    <RepositoryUrl>https://github.com/tulde23/AspNetCore.IntegrationTesting</RepositoryUrl>
     <RepositoryType>GIT</RepositoryType>
-    <PackageTags>AspNetCore, Integration, Xunit</PackageTags>
+    <PackageTags>AspNetCore, Integration, Xunit, Testing, Controllers</PackageTags>
     <PackageReleaseNotes>Initial Release</PackageReleaseNotes>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <ApplicationIcon />
@@ -19,7 +19,9 @@
     <Authors>Jason Tully</Authors>
     <Company>Jason Tully</Company>
     <Product>Xunit.AspNetCore.Integration</Product>
-    <Version>1.0.1</Version>
+    <Version>1.0.3</Version>
+    <AssemblyVersion>1.0.3.0</AssemblyVersion>
+    <FileVersion>1.0.3.0</FileVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -39,7 +41,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Contracts\" />
+    <ProjectReference Include="..\AspNetCore.IntegrationTesting\AspNetCore.IntegrationTesting.csproj" />
   </ItemGroup>
 
 </Project>

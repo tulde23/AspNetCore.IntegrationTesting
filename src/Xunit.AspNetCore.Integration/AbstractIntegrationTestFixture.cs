@@ -4,10 +4,11 @@ using System.IO;
 using System.Linq.Expressions;
 using System.Reflection;
 using System.Threading.Tasks;
+using AspNetCore.IntegrationTesting;
+using AspNetCore.IntegrationTesting.Contracts;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.TestHost;
-using Xunit.AspNetCore.Integration.Contracts;
 
 namespace Xunit.AspNetCore.Integration
 {
@@ -40,7 +41,7 @@ namespace Xunit.AspNetCore.Integration
         /// }
         /// }
         /// </example>
-        protected AbstractIntegrationTestFixture(Func<string> baseAddress, string relativeRoot  = "src") : this(baseAddress?.Invoke() ?? "http://localhost:5000", relativeRoot)
+        protected AbstractIntegrationTestFixture(Func<string> baseAddress, string relativeRoot = "src") : this(baseAddress?.Invoke() ?? "http://localhost:5000", relativeRoot)
         {
         }
 
@@ -59,10 +60,8 @@ namespace Xunit.AspNetCore.Integration
                .UseStartup(typeof(TStartup));
 
             _server = new TestServer(builder);
-            var client = _server.CreateClient();
-            client.BaseAddress = new Uri(baseAddress);
             Services = _server.Host.Services;
-            ActionInvoker = new ControllerActionHttpClientDecorator(client);
+            ActionInvoker = _server.GetActionInvoker(baseAddress);
         }
 
         /// <summary>
@@ -131,7 +130,6 @@ namespace Xunit.AspNetCore.Integration
             {
                 try
                 {
-              
                     var path = GetProjectPath(projectRelativePath, type.Assembly);
                     return path;
                 }

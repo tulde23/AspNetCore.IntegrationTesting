@@ -9,8 +9,8 @@ namespace AspNetCore.IntegrationTesting
     /// <summary>
     /// Decorate the HttpClient with additional methods
     /// </summary>
-    /// <seealso cref="AspNetCore.IntegrationTesting.Contracts.IControllerActionInvoker" />
-    internal class ControllerActionHttpClientDecorator : IControllerActionInvoker
+    /// <seealso cref="IControllerActionInvoker" />
+    public sealed class ControllerActionHttpClientDecorator : IControllerActionInvoker
     {
         /// <summary>
         /// The client
