@@ -21,6 +21,10 @@
     <Product>AspNetCore.IntegrationTesting</Product>
     <Version>1.0.0</Version>
   </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DocumentationFile>bin\Release\netstandard2.0\AspNetCore.IntegrationTesting.xml</DocumentationFile>
+  </PropertyGroup>
   <ItemGroup>
 
     <PackageReference Include="microsoft.aspnetcore.mvc.abstractions" Version="2.0.1" />
