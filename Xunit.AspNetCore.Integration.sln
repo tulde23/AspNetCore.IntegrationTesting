@@ -8,8 +8,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		README.md = README.md
 	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Xunit.AspNetCore.Integration", "src\Xunit.AspNetCore.Integration\Xunit.AspNetCore.Integration.csproj", "{5AF9EA1D-81CC-4F06-ABA7-4373530BB880}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{4D3BF199-0339-48E8-976B-CBB892D718F8}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{3FE05526-3B42-43CE-8386-08AB55B82088}"
@@ -18,7 +16,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AwesomeAPI", "tests\Awesome
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AwesomeApiIntegrationTest", "tests\IntegrationTestExample\AwesomeApiIntegrationTest.csproj", "{457EC5B3-FCA1-4D86-B8CC-189D1BFB69E5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetCore.IntegrationTesting", "src\AspNetCore.IntegrationTesting\AspNetCore.IntegrationTesting.csproj", "{E8DDB21C-AD2B-4A2C-833D-9CF57105EDAA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspNetCore.IntegrationTesting", "src\AspNetCore.IntegrationTesting\AspNetCore.IntegrationTesting.csproj", "{E8DDB21C-AD2B-4A2C-833D-9CF57105EDAA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -26,10 +24,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{5AF9EA1D-81CC-4F06-ABA7-4373530BB880}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5AF9EA1D-81CC-4F06-ABA7-4373530BB880}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5AF9EA1D-81CC-4F06-ABA7-4373530BB880}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5AF9EA1D-81CC-4F06-ABA7-4373530BB880}.Release|Any CPU.Build.0 = Release|Any CPU
 		{6AECDAC7-87FD-433F-B2E1-AB639BE4CA82}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{6AECDAC7-87FD-433F-B2E1-AB639BE4CA82}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6AECDAC7-87FD-433F-B2E1-AB639BE4CA82}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -47,7 +41,6 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{5AF9EA1D-81CC-4F06-ABA7-4373530BB880} = {4D3BF199-0339-48E8-976B-CBB892D718F8}
 		{6AECDAC7-87FD-433F-B2E1-AB639BE4CA82} = {3FE05526-3B42-43CE-8386-08AB55B82088}
 		{457EC5B3-FCA1-4D86-B8CC-189D1BFB69E5} = {3FE05526-3B42-43CE-8386-08AB55B82088}
 		{E8DDB21C-AD2B-4A2C-833D-9CF57105EDAA} = {4D3BF199-0339-48E8-976B-CBB892D718F8}
