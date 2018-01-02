@@ -1,7 +1,7 @@
 ﻿using AspNetCore.IntegrationTesting.Contracts;
 using AspNetCore.IntegrationTesting.Models;
 
-namespace AspNetCore.IntegrationTesting
+namespace AspNetCore.IntegrationTesting.Decomposing
 {
     /// <summary>
     ///  A factory class for creating IControllerActionRoute instances

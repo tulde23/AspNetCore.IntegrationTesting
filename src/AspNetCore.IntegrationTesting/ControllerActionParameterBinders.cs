@@ -3,7 +3,7 @@ using System.Linq;
 using AspNetCore.IntegrationTesting.Binders;
 using AspNetCore.IntegrationTesting.Contracts;
 
-namespace AspNetCore.IntegrationTesting.Decomposing
+namespace AspNetCore.IntegrationTesting
 {
     /// <summary>
     /// A factory class for applying binders to a route
