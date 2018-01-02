@@ -12542,11 +12542,11 @@
       "hideWarningsAndErrors": true
     },
     "restore": {
-      "projectUniqueName": "C:\\Development\\Xunit.AspNetCore.Integration\\tests\\AwesomeAPI\\AwesomeAPI.csproj",
+      "projectUniqueName": "C:\\Development\\AspNetCore.IntegrationTesting\\tests\\AwesomeAPI\\AwesomeAPI.csproj",
       "projectName": "AwesomeAPI",
-      "projectPath": "C:\\Development\\Xunit.AspNetCore.Integration\\tests\\AwesomeAPI\\AwesomeAPI.csproj",
+      "projectPath": "C:\\Development\\AspNetCore.IntegrationTesting\\tests\\AwesomeAPI\\AwesomeAPI.csproj",
       "packagesPath": "C:\\Users\\jason\\.nuget\\packages\\",
-      "outputPath": "C:\\Development\\Xunit.AspNetCore.Integration\\tests\\AwesomeAPI\\obj\\",
+      "outputPath": "C:\\Development\\AspNetCore.IntegrationTesting\\tests\\AwesomeAPI\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

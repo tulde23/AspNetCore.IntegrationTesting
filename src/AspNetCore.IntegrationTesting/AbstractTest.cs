@@ -1,4 +1,4 @@
-﻿namespace Xunit.AspNetCore.Integration
+﻿namespace AspNetCore.IntegrationTesting
 {
     /// <summary>
     /// A common base class for all tests that require a fixture

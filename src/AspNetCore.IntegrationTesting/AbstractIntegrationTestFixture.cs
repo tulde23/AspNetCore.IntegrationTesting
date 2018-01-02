@@ -2,15 +2,14 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq.Expressions;
+using System.Net.Http;
 using System.Reflection;
 using System.Threading.Tasks;
-using AspNetCore.IntegrationTesting;
-using AspNetCore.IntegrationTesting.Contracts;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.TestHost;
 
-namespace Xunit.AspNetCore.Integration
+namespace AspNetCore.IntegrationTesting
 {
     /// <summary>
     /// Provides a base xunit test fixture for integration tests
@@ -61,7 +60,7 @@ namespace Xunit.AspNetCore.Integration
 
             _server = new TestServer(builder);
             Services = _server.Host.Services;
-            ActionInvoker = _server.GetActionInvoker(baseAddress);
+            Client = _server.CreateClient();
         }
 
         /// <summary>
@@ -70,7 +69,7 @@ namespace Xunit.AspNetCore.Integration
         /// <value>
         /// The client.
         /// </value>
-        public IControllerActionInvoker ActionInvoker { get; }
+        public HttpClient Client { get; }
 
         /// <summary>
         /// Gets the service provider.
@@ -85,7 +84,7 @@ namespace Xunit.AspNetCore.Integration
         /// </summary>
         public void Dispose()
         {
-            ActionInvoker.Dispose();
+            Client.Dispose();
             _server.Dispose();
         }
 
@@ -98,7 +97,7 @@ namespace Xunit.AspNetCore.Integration
         /// <returns></returns>
         public virtual async Task<IEnumerable<TResponse>> ManyAsync<TController, TResponse>(Expression<Func<TController, object>> expression) where TController : Controller
         {
-            return await ActionInvoker.InvokeAsync<IEnumerable<TResponse>>(ControllerActionFactory.GetAction(expression));
+            return await Client.ManyAsync<TController, TResponse>(expression);
         }
 
         /// <summary>
@@ -111,7 +110,7 @@ namespace Xunit.AspNetCore.Integration
         /// <returns></returns>
         public virtual async Task<TResponse> SingleAsync<TController, TResponse>(Expression<Func<TController, object>> expression) where TController : Controller
         {
-            return await ActionInvoker.InvokeAsync<TResponse>(ControllerActionFactory.GetAction(expression));
+            return await Client.SingleAsync<TController, TResponse>(expression);
         }
 
         /// <summary>
