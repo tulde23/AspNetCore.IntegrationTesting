@@ -1,7 +1,7 @@
-﻿using AspNetCore.IntegrationTesting.Decomposing;
+﻿using AspNetCore.IntegrationTesting;
 using AwesomeAPI;
 using Xunit;
-using Xunit.AspNetCore.Integration;
+
 
 namespace IntegrationTestAwesomeApi
 {
@@ -29,7 +29,6 @@ namespace IntegrationTestAwesomeApi
         {
             //this is how we add custom controller action parameter decomposers
             //ControllerActionParameterBinders.AddBinders(new MyCustomBinder());
-
         }
     }
 
