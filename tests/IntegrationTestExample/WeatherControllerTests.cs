@@ -42,6 +42,15 @@ namespace IntegrationTestExample
             (await Fixture.SingleAsync<WeatherController, int>(controller => controller.Put(zipCode)))
           .Should().Be(expectedResult);
         }
+        [Theory(DisplayName = "Get Weather By Postal Code With Route Attribute")]
+        [MemberData(nameof(ZipCodes))]
+        public async Task TestGetByPostalCodeWithAttribute(int zipCode, int expectedResult)
+        {
+
+         
+            (await Fixture.SingleAsync<WeatherController, int>(controller => controller.GetFromRouteWithAttribute(zipCode)))
+          .Should().Be(expectedResult);
+        }
 
         public static TheoryData ZipCodes
         {

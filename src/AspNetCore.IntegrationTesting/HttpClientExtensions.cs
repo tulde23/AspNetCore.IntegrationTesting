@@ -48,7 +48,7 @@ namespace System.Net.Http
         /// <param name="expression">The expression.</param>
         /// <returns></returns>
         /// <exception cref="System.ArgumentNullException">controllerAction</exception>
-        private static async Task<TResponse> InvokeAsync<TController, TResponse>(this HttpClient client,
+        public static async Task<TResponse> InvokeAsync<TController, TResponse>(this HttpClient client,
             Expression<Func<TController, object>> expression) where TController : Controller
         {
             if (expression == null)

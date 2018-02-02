@@ -46,7 +46,13 @@ namespace AwesomeAPI.Controllers
             return await GetCurrentTempForZipCode(id);
         }
 
-        
+        // PUT api/values/5
+        [HttpGet]
+        [Route("route/{postalCode}")]
+        public async Task<int> GetFromRouteWithAttribute([FromRoute]int postalCode)
+        {
+            return await GetCurrentTempForZipCode(postalCode);
+        }
         private Task<int> GetCurrentTempForZipCode(int postalCode)
         {
             switch (postalCode)

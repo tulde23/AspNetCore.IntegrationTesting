@@ -10,3 +10,7 @@ tests/IntegrationTestExample/bin
 tests/IntegrationTestExample/obj
 .vs/AspNetCore.IntegrationTesting/v15/Server/sqlite3/db.lock
 .vs/AspNetCore.IntegrationTesting/v15/Server/sqlite3/storage.ide
+
+*.ide-shm
+
+*.ide-wal

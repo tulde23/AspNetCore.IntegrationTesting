@@ -4774,7 +4774,7 @@
           "lib/netstandard1.3/Microsoft.WindowsAzure.Storage.dll": {}
         }
       },
-      "AspNetCore.IntegrationTesting/2.0.0": {
+      "AspNetCore.IntegrationTesting/2.0.1": {
         "type": "project",
         "framework": ".NETStandard,Version=v2.0",
         "dependencies": {
@@ -12675,7 +12675,7 @@
         "windowsazure.storage.nuspec"
       ]
     },
-    "AspNetCore.IntegrationTesting/2.0.0": {
+    "AspNetCore.IntegrationTesting/2.0.1": {
       "type": "project",
       "path": "../../src/AspNetCore.IntegrationTesting/AspNetCore.IntegrationTesting.csproj",
       "msbuildProject": "../../src/AspNetCore.IntegrationTesting/AspNetCore.IntegrationTesting.csproj"
@@ -12683,7 +12683,7 @@
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v2.0": [
-      "AspNetCore.IntegrationTesting >= 2.0.0",
+      "AspNetCore.IntegrationTesting >= 2.0.1",
       "FluentAssertions >= 4.19.4",
       "Microsoft.AspNetCore.All >= 2.0.0",
       "Microsoft.NETCore.App >= 2.0.0"

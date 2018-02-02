@@ -44,6 +44,8 @@ namespace AspNetCore.IntegrationTesting
             var methodInputParameters = methodInfo.GetParameters();
             //all controller methods must have a derivative of HttpMethodAttribute
             var httpMethodAttribute = methodInfo.GetCustomAttribute<HttpMethodAttribute>(false);
+            //get a route attribute applied to controller action
+            var routeAttribute = methodInfo.GetCustomAttribute<RouteAttribute>(false);
             if (httpMethodAttribute == null)
             {
                 //if no, method, we should throw an exception
@@ -74,9 +76,12 @@ namespace AspNetCore.IntegrationTesting
             {
                 controllerAction.RouteSegments.Add(httpMethodAttribute.Template);
             }
+            if (routeAttribute != null && !String.IsNullOrEmpty(routeAttribute.Template))
+            {
+                controllerAction.RouteSegments.Add(routeAttribute.Template);
+            }
             return controllerAction;
         }
-
 
         /// <summary>
         /// Gets the annotated binding source attribute.

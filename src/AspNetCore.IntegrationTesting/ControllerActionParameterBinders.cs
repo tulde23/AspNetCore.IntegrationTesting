@@ -32,14 +32,11 @@ namespace AspNetCore.IntegrationTesting
         {
             lock (_binders)
             {
-                if (binders != null)
+                foreach (var r in binders)
                 {
-                    foreach (var r in binders)
+                    if (!_binders.Any(x => x.GetType().Equals(r.GetType())))
                     {
-                        if (!_binders.Any(x => x.GetType().Equals(r.GetType())))
-                        {
-                            _binders.Add(r);
-                        }
+                        _binders.Add(r);
                     }
                 }
             }
