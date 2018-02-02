@@ -11,7 +11,7 @@
     <RepositoryType>GIT</RepositoryType>
     <PackageTags>AspNetCore, Integration, Controllers, Testing</PackageTags>
     <PackageReleaseNotes>Initial Release
-2.0.1 - Added controller action route attribute inspection</PackageReleaseNotes>
+2.0.2 - Added controller action route attribute inspection</PackageReleaseNotes>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <ApplicationIcon />
     <OutputType>Library</OutputType>
@@ -20,7 +20,7 @@
     <Authors>Jason Tully</Authors>
     <Company>Jason Tully</Company>
     <Product>AspNetCore.IntegrationTesting</Product>
-    <Version>2.0.1</Version>
+    <Version>2.0.2</Version>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
