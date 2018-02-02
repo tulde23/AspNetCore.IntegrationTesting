@@ -14,7 +14,7 @@ namespace AspNetCore.IntegrationTesting
     /// <summary>
     /// A factory class for creating instances of IControllerAction
     /// </summary>
-    public static class ControllerActionFactory
+    internal static class ControllerActionFactory
     {
         /// <summary>
         /// Converts a controller action expression to an instance of IControllerAction.  This instance will contain

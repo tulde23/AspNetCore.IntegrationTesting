@@ -23,7 +23,7 @@
     ".NETCoreApp,Version=v2.0": {
       "AwesomeAPI/1.0.0": {
         "dependencies": {
-          "AspNetCore.IntegrationTesting": "1.0.0",
+          "AspNetCore.IntegrationTesting": "2.0.0",
           "FluentAssertions": "4.19.4",
           "Microsoft.AspNetCore.All": "2.0.0",
           "Microsoft.NETCore.App": "2.0.0"
@@ -3821,7 +3821,7 @@
           "lib/netstandard1.3/Microsoft.WindowsAzure.Storage.dll": {}
         }
       },
-      "AspNetCore.IntegrationTesting/1.0.0": {
+      "AspNetCore.IntegrationTesting/2.0.0": {
         "dependencies": {
           "Microsoft.AspNetCore.Mvc.Abstractions": "2.0.1",
           "Microsoft.AspNetCore.Mvc.Core": "2.0.1",
@@ -6035,7 +6035,7 @@
       "path": "windowsazure.storage/8.1.4",
       "hashPath": "windowsazure.storage.8.1.4.nupkg.sha512"
     },
-    "AspNetCore.IntegrationTesting/1.0.0": {
+    "AspNetCore.IntegrationTesting/2.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
