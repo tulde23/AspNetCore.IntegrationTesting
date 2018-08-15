@@ -12,7 +12,7 @@ namespace AspNetCore.IntegrationTesting.Contracts
     public interface IControllerActionRoute
     {
         /// <summary>
-        /// Adds to a new segment to the templated route.
+        /// Adds  a new segment to the templated route.
         /// </summary>
         /// <param name="routeSegment">The route segment.</param>
         void AddToRoute(string routeSegment);

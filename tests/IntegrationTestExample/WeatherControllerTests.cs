@@ -1,29 +1,34 @@
+using System.Collections.Generic;
 using System.Threading.Tasks;
+using AspNetCore;
 using AwesomeAPI.Controllers;
+using AwesomeApiIntegrationTest;
 using FluentAssertions;
 using IntegrationTestAwesomeApi;
 using Xunit;
+using Xunit.Abstractions;
 
 namespace IntegrationTestExample
 {
-    public class WeatherControllerTests : AwesomeApiIntegrationTest
+    public class WeatherControllerTests : AwesomeApiTest
     {
-        public WeatherControllerTests(AwesomeApiIntegrationTestFixture fixture) : base(fixture)
+        public WeatherControllerTests(AwesomeApiWebFactory fixture, ITestOutputHelper testOutputHelper) : base(fixture, testOutputHelper)
         {
         }
 
+     
         [Fact(DisplayName = "Get Produces Two Zip Codes")]
         public async Task TestGet()
         {
-            (await Fixture.ManyAsync<WeatherController, int>(controller => controller.Get()))
-                .Should().HaveCount(2);
+            var response = await Client.InvokeAsync<WeatherController, IEnumerable<int>>(controller => controller.Get());
+            response.Should().HaveCount(2);
         }
 
         [Theory(DisplayName = "Get Weather By Postal Code")]
         [MemberData(nameof(ZipCodes))]
         public async Task TestGetByPostalCode(int zipCode, int expectedResult)
         {
-            (await Fixture.SingleAsync<WeatherController, int>(controller => controller.GetFromRoute(zipCode)))
+            (await Client.InvokeAsyncTask<WeatherController, Task<int>>(controller => controller.GetFromRoute(zipCode)))
           .Should().Be(expectedResult);
         }
 
@@ -31,7 +36,7 @@ namespace IntegrationTestExample
         [MemberData(nameof(ZipCodes))]
         public async Task TesPostByPostalCode(int zipCode, int expectedResult)
         {
-            (await Fixture.SingleAsync<WeatherController, int>(controller => controller.Post(zipCode)))
+            (await Client.InvokeAsyncTask<WeatherController, Task<int>>(controller => controller.Post(zipCode)))
           .Should().Be(expectedResult);
         }
 
@@ -39,16 +44,15 @@ namespace IntegrationTestExample
         [MemberData(nameof(ZipCodes))]
         public async Task TesPutByPostalCode(int zipCode, int expectedResult)
         {
-            (await Fixture.SingleAsync<WeatherController, int>(controller => controller.Put(zipCode)))
+            (await Client.InvokeAsyncTask<WeatherController, Task<int>>(controller => controller.Put(zipCode)))
           .Should().Be(expectedResult);
         }
+
         [Theory(DisplayName = "Get Weather By Postal Code With Route Attribute")]
         [MemberData(nameof(ZipCodes))]
         public async Task TestGetByPostalCodeWithAttribute(int zipCode, int expectedResult)
         {
-
-         
-            (await Fixture.SingleAsync<WeatherController, int>(controller => controller.GetFromRouteWithAttribute(zipCode)))
+            (await Client.InvokeAsyncTask<WeatherController, Task<int>>(controller => controller.GetFromRouteWithAttribute(zipCode)))
           .Should().Be(expectedResult);
         }
 

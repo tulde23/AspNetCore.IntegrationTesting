@@ -15,6 +15,7 @@ namespace AwesomeAPI.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet]
+        [Produces("application/json")]
         public IEnumerable<int> Get()
         {
             return new int[] { 19106, 30317 };
@@ -27,6 +28,7 @@ namespace AwesomeAPI.Controllers
         /// <param name="postalCode">The identifier.</param>
         /// <returns></returns>
         [HttpGet("{postalCode}")]
+        [Produces("application/json")]
         public  async Task<int> GetFromRoute([FromRoute] int postalCode)
         {
             return await GetCurrentTempForZipCode(postalCode);
@@ -34,6 +36,7 @@ namespace AwesomeAPI.Controllers
 
         // POST api/values
         [HttpPost]
+        [Produces("application/json")]
         public async Task<int> Post([FromBody]int postalCode)
         {
             return await GetCurrentTempForZipCode(postalCode);
@@ -41,6 +44,7 @@ namespace AwesomeAPI.Controllers
 
         // PUT api/values/5
         [HttpPut]
+        [Produces("application/json")]
         public async Task<int> Put([FromQuery]int id)
         {
             return await GetCurrentTempForZipCode(id);
@@ -49,6 +53,7 @@ namespace AwesomeAPI.Controllers
         // PUT api/values/5
         [HttpGet]
         [Route("route/{postalCode}")]
+        [Produces("application/json")]
         public async Task<int> GetFromRouteWithAttribute([FromRoute]int postalCode)
         {
             return await GetCurrentTempForZipCode(postalCode);

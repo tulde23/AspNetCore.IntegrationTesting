@@ -1,7 +1,7 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
     <Description>AspNetCore.IntegrationTesting is a simple library allowing you to run integration tests against your controllers in a strongly typed manner.  No more magic route strings and determining what HttpMethod to invoke. You can invoke your controller with one line of code!</Description>
     <Copyright></Copyright>
     <PackageLicenseUrl>https://raw.githubusercontent.com/tulde23/AspNetCore.IntegrationTesting/master/lic.txt</PackageLicenseUrl>
@@ -24,14 +24,15 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DocumentationFile>bin\Release\netstandard2.0\AspNetCore.IntegrationTesting.xml</DocumentationFile>
+    <DocumentationFile>bin\Release\netcoreapp2.1\AspNetCore.IntegrationTesting.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
-
-    <PackageReference Include="microsoft.aspnetcore.mvc.abstractions" Version="2.0.1" />
-    <PackageReference Include="microsoft.aspnetcore.mvc.core" Version="2.0.1" />
-    <PackageReference Include="microsoft.aspnetcore.mvc.viewfeatures" Version="2.0.1" />
-    <PackageReference Include="microsoft.aspnetcore.testhost" Version="2.0.1" />
+    <PackageReference Include="FluentAssertions" Version="5.4.1" />
+    <PackageReference Include="Microsoft.AspNetCore.App" Version="2.1.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" Version="2.1.0" />
+    <PackageReference Include="Moq" Version="4.9.0" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.7.0" />
+    <PackageReference Include="xunit" Version="2.3.1" />
   </ItemGroup>
   <Target Name="PostcompileScript" AfterTargets="Build" Condition=" '$(IsCrossTargetingBuild)' != 'true' ">
     <Exec Command="powershell –ExecutionPolicy Bypass .\Run-PostCompile.ps1 -configuration:$(Configuration) -projectName:&quot;$(AssemblyName)&quot; -nugetPath:&quot;C:\LocalNuget&quot;" />
