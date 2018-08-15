@@ -100,11 +100,12 @@ namespace AspNetCore.IntegrationTesting.Models
         /// <returns></returns>
         private string BuildUri()
         {
+            var sb = new StringBuilder(_routeStringBuilder.ToString());
             if (_queryString.Any())
             {
-                _routeStringBuilder.Append($"?{string.Join("&", _queryString)}");
+                sb.Append($"?{string.Join("&", _queryString)}");
             }
-            return _routeStringBuilder.ToString();
+            return sb.ToString();
         }
 
         /// <summary>
@@ -209,6 +210,11 @@ namespace AspNetCore.IntegrationTesting.Models
             {
                 yield return m;
             }
+        }
+
+        public override string ToString()
+        {
+            return BuildUri();
         }
     }
 }
